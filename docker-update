@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+docker pull linuxserver/transmission
+docker pull linuxserver/sonarr
+
+docker stop transmission sonarr
+docker rm transmission sonarr
+
+docker run \
+    -d \
+    --name="transmission" \
+    --net="host" \
+    --restart=always \
+    -e PGID=1000 -e PUID=1000 \
+    -e TZ="America/Toronto" \
+    -v /home/markieta/Docker/transmission/config:/config \
+    -v /home/markieta/Docker/transmission/watch:/watch \
+    -v /media:/downloads \
+    linuxserver/transmission
+
+docker run \
+    -d \
+    --name="sonarr" \
+    --net="host" \
+    --restart=always \
+    -e PUID=1000 -e PGID=1000 \
+    -e TZ="America/Toronto" \
+    -v /etc/localtime:/etc/localtime:ro \
+    -v /home/markieta/Docker/sonarr/config:/config \
+    -v /home/markieta/Docker/sonarr/tv:/tv \
+    -v /media:/downloads \
+    linuxserver/sonarr
