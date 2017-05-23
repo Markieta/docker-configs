@@ -1,0 +1,15 @@
+transmission/config/dht.dat
+transmission/config/resume/
+transmission/config/stats.json
+transmission/config/torrents/
+sonarr/config/Backups/
+sonarr/config/MediaCover/
+sonarr/config/logs.db
+sonarr/config/logs.db-shm
+sonarr/config/logs.db-wal
+sonarr/config/logs/
+sonarr/config/nzbdrone.db
+sonarr/config/nzbdrone.db-shm
+sonarr/config/nzbdrone.db-wal
+sonarr/config/nzbdrone.pid
+sonarr/config/xdg/
