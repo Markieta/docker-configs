@@ -30,3 +30,5 @@ docker run \
     -v /home/markieta/Docker/sonarr/tv:/tv \
     -v /media:/downloads \
     linuxserver/sonarr
+
+docker system prune
