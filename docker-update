@@ -32,3 +32,5 @@ docker run \
     linuxserver/sonarr
 
 docker system prune
+
+systemctl restart qos
