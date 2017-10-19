@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+/usr/bin/unrar x -y -p- -o+ "$TR_TORRENT_DIR/$TR_TORRENT_NAME/*.rar" "$TR_TORRENT_DIR/$TR_TORRENT_NAME/"
