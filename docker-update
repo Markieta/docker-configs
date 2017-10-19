@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if [ "$EUID" -ne 0 ]
+    then echo "This script must be run as root"
+    exit 1
+fi
+
 docker pull linuxserver/transmission
 docker pull linuxserver/sonarr
 
@@ -13,8 +18,8 @@ docker run \
     --restart=always \
     -e PGID=1000 -e PUID=1000 \
     -e TZ="America/Toronto" \
-    -v /home/markieta/Docker/transmission/config:/config \
-    -v /home/markieta/Docker/transmission/watch:/watch \
+    -v /srv/docker/transmission/config:/config \
+    -v /srv/docker/transmission/watch:/watch \
     -v /media:/downloads \
     linuxserver/transmission
 
@@ -26,8 +31,8 @@ docker run \
     -e PUID=1000 -e PGID=1000 \
     -e TZ="America/Toronto" \
     -v /etc/localtime:/etc/localtime:ro \
-    -v /home/markieta/Docker/sonarr/config:/config \
-    -v /home/markieta/Docker/sonarr/tv:/tv \
+    -v /srv/docker/sonarr/config:/config \
+    -v /srv/docker/sonarr/tv:/tv \
     -v /media:/downloads \
     linuxserver/sonarr
 
