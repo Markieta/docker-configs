@@ -13,3 +13,4 @@ sonarr/config/nzbdrone.db-shm
 sonarr/config/nzbdrone.db-wal
 sonarr/config/nzbdrone.pid
 sonarr/config/xdg/
+docker.conf

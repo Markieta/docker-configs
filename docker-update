@@ -5,11 +5,14 @@ if [ "$EUID" -ne 0 ]
     exit 1
 fi
 
+source docker.conf
+
 docker pull linuxserver/transmission
 docker pull linuxserver/sonarr
+docker pull rednoah/filebot
 
-docker stop transmission sonarr
-docker rm transmission sonarr
+docker stop transmission sonarr filebot
+docker system prune -f
 
 docker run \
     -d \
@@ -36,6 +39,20 @@ docker run \
     -v /media:/downloads \
     linuxserver/sonarr
 
-docker system prune
+docker create \
+    --name="filebot" \
+    --net="host" \
+    -v /media:/media \
+    -p 5452:5452 \
+    -e FILEBOT_NODE_AUTH=BASIC \
+    -e FILEBOT_NODE_AUTH_USER="$FILEBOT_USER" \
+    -e FILEBOT_NODE_AUTH_PASS="$FILEBOT_PASS" \
+    -p 5453:5453 \
+    -v /etc/letsencrypt:/etc/letsencrypt:ro \
+    -e FILEBOT_NODE_HTTPS=YES \
+    -e FILEBOT_NODE_HTTPS_PORT=5453 \
+    -e FILEBOT_NODE_HTTPS_KEY="$SSL_KEY" \
+    -e FILEBOT_NODE_HTTPS_CRT="$SSL_CRT" \
+    rednoah/filebot:node
 
 systemctl restart qos
