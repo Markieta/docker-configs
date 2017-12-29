@@ -5,7 +5,8 @@ if [ "$EUID" -ne 0 ]
     exit 1
 fi
 
-source docker.conf
+MYDIR="$(dirname "$0")"
+source "$MYDIR"/docker.conf
 
 docker pull linuxserver/transmission
 docker pull linuxserver/sonarr
