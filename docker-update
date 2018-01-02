@@ -55,4 +55,12 @@ docker create \
     -e FILEBOT_NODE_HTTPS_CRT="$SSL_CRT" \
     rednoah/filebot:node
 
+echo '### Filebot Customizations  ###'
+echo 'Series Format:'
+echo -e 'TV/{n}/{n} - {s00e00} - {t}\n'
+echo 'Anime Format:'
+echo -e 'Anime/{n}/{n} - {s00e00} - {t}\n'
+echo 'Run Program:'
+echo -e "chmod -R a+rwX '{folder}/'"
+
 systemctl restart qos
