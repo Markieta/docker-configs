@@ -5,7 +5,8 @@ if [ "$EUID" -ne 0 ]
     exit 1
 fi
 
-source /srv/docker/docker.conf
+DOCKER_CONFIGS='/srv/docker'
+source "${DOCKER_CONFIGS}/docker.conf"
 
 docker pull linuxserver/transmission
 docker pull linuxserver/sonarr
@@ -21,8 +22,8 @@ docker run \
     --restart=always \
     -e PGID=1000 -e PUID=1000 \
     -e TZ="America/Toronto" \
-    -v /srv/docker/transmission/config:/config \
-    -v /srv/docker/transmission/watch:/watch \
+    -v "${DOCKER_CONFIGS}/transmission/config:/config" \
+    -v "${DOCKER_CONFIGS}/transmission/watch:/watch" \
     -v /media:/downloads \
     linuxserver/transmission
 
@@ -34,8 +35,8 @@ docker run \
     -e PUID=1000 -e PGID=1000 \
     -e TZ="America/Toronto" \
     -v /etc/localtime:/etc/localtime:ro \
-    -v /srv/docker/sonarr/config:/config \
-    -v /srv/docker/sonarr/tv:/tv \
+    -v "${DOCKER_CONFIGS}/sonarr/config:/config" \
+    -v "${DOCKER_CONFIGS}/sonarr/tv:/tv" \
     -v /media:/downloads \
     linuxserver/sonarr
 
