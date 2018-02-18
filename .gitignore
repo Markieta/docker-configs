@@ -14,3 +14,5 @@ sonarr/config/nzbdrone.db-wal
 sonarr/config/nzbdrone.pid
 sonarr/config/xdg/
 docker.conf
+dnsmasq.d/
+pihole/
