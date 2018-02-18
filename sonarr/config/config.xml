@@ -6,7 +6,7 @@
   <SslPort>9898</SslPort>
   <EnableSsl>False</EnableSsl>
   <ApiKey>3b7c57d361bb47e8a4b3ba780ce6d2a4</ApiKey>
-  <AuthenticationMethod>Basic</AuthenticationMethod>
+  <AuthenticationMethod>None</AuthenticationMethod>
   <Branch>master</Branch>
   <LaunchBrowser>False</LaunchBrowser>
   <SslCertHash></SslCertHash>
