@@ -47,6 +47,7 @@ docker run \
     --restart=always \
     -p 53:53/tcp -p 53:53/udp -p 8053:80 \
     -e TZ="America/Toronto" \
+    -e WEBPASSWORD="${PIHOLE_PASS}" \
     -v "${DOCKER_CONFIGS}/pihole/:/etc/pihole/" \
     -v "${DOCKER_CONFIGS}/dnsmasq.d/:/etc/dnsmasq.d/" \
     -e ServerIP="${IP}" \
@@ -58,14 +59,14 @@ docker create \
     -v /media:/media \
     -p 5452:5452 \
     -e FILEBOT_NODE_AUTH=BASIC \
-    -e FILEBOT_NODE_AUTH_USER="$FILEBOT_USER" \
-    -e FILEBOT_NODE_AUTH_PASS="$FILEBOT_PASS" \
+    -e FILEBOT_NODE_AUTH_USER="${FILEBOT_USER}" \
+    -e FILEBOT_NODE_AUTH_PASS="${FILEBOT_PASS}" \
     -p 5453:5453 \
     -v /etc/letsencrypt:/etc/letsencrypt:ro \
     -e FILEBOT_NODE_HTTPS=YES \
     -e FILEBOT_NODE_HTTPS_PORT=5453 \
-    -e FILEBOT_NODE_HTTPS_KEY="$SSL_KEY" \
-    -e FILEBOT_NODE_HTTPS_CRT="$SSL_CRT" \
+    -e FILEBOT_NODE_HTTPS_KEY="${SSL_KEY}" \
+    -e FILEBOT_NODE_HTTPS_CRT="${SSL_CRT}" \
     rednoah/filebot:node
 
 echo '### Filebot Customizations  ###'
