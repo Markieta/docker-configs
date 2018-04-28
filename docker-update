@@ -49,6 +49,7 @@ docker run \
     -e TZ="America/Toronto" \
     -e WEBPASSWORD="${PIHOLE_PASS}" \
     -v "${DOCKER_CONFIGS}/pihole/:/etc/pihole/" \
+    -v "${DOCKER_CONFIGS}/pihole/resolv.conf:/etc/resolv.conf" \
     -v "${DOCKER_CONFIGS}/dnsmasq.d/:/etc/dnsmasq.d/" \
     -e ServerIP="${IP}" \
     diginc/pi-hole
