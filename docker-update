@@ -10,10 +10,10 @@ source "${DOCKER_CONFIGS}/docker.conf"
 
 docker pull linuxserver/transmission
 docker pull linuxserver/sonarr
-docker pull diginc/pi-hole
 docker pull rednoah/filebot
+# docker pull diginc/pi-hole
 
-docker stop transmission sonarr pihole filebot
+docker stop transmission sonarr filebot # pihole
 docker system prune -f
 
 docker run \
@@ -41,20 +41,20 @@ docker run \
     -v /media:/downloads \
     linuxserver/sonarr
 
-docker run \
-    -d \
-    --name pihole \
-    --net="host" \
-    --restart=always \
-    -e TZ="America/Toronto" \
-    -e WEBPASSWORD="${PIHOLE_PASS}" \
-    -v "${DOCKER_CONFIGS}/pihole/:/etc/pihole/" \
-    -v "${DOCKER_CONFIGS}/pihole/resolv.conf:/etc/resolv.conf" \
-    -v "${DOCKER_CONFIGS}/pihole/lighttpd.conf:/etc/lighttpd/lighttpd.conf" \
-    -v "${DOCKER_CONFIGS}/dnsmasq.d/:/etc/dnsmasq.d/" \
-    -e ServerIP="${IP}" \
-    -e INTERFACE="${INC}" \
-    diginc/pi-hole
+#docker run \
+#    -d \
+#    --name pihole \
+#    --net="host" \
+#    --restart=always \
+#    -e TZ="America/Toronto" \
+#    -e WEBPASSWORD="${PIHOLE_PASS}" \
+#    -v "${DOCKER_CONFIGS}/pihole/:/etc/pihole/" \
+#    -v "${DOCKER_CONFIGS}/pihole/resolv.conf:/etc/resolv.conf" \
+#    -v "${DOCKER_CONFIGS}/pihole/lighttpd.conf:/etc/lighttpd/lighttpd.conf" \
+#    -v "${DOCKER_CONFIGS}/dnsmasq.d/:/etc/dnsmasq.d/" \
+#    -e ServerIP="${IP}" \
+#    -e INTERFACE="${INC}" \
+#    diginc/pi-hole
 
 docker create \
     --name="filebot" \
